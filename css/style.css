@@ -88,7 +88,7 @@ section { padding: 7rem 0; }
 }
 
 .section-header h2 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.7rem, 5vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--text);
@@ -169,7 +169,11 @@ section { padding: 7rem 0; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 .nav-toggle span {
   display: block;
@@ -195,6 +199,8 @@ section { padding: 7rem 0; }
   border: none;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 .btn:hover { transform: translateY(-2px); }
 
@@ -246,7 +252,7 @@ section { padding: 7rem 0; }
    HERO
    ============================================================ */
 #hero {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -306,7 +312,7 @@ section { padding: 7rem 0; }
 }
 
 .hero-text h1 {
-  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -337,6 +343,7 @@ section { padding: 7rem 0; }
   background: var(--green);
   box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
   animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 @keyframes pulse {
@@ -623,6 +630,9 @@ section { padding: 7rem 0; }
   margin-left: 0.5rem;
   font-family: monospace;
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .browser-screen {
@@ -637,7 +647,6 @@ section { padding: 7rem 0; }
   font-family: 'DM Sans', sans-serif;
 }
 
-/* Navbar roxa */
 .hrmj-navbar {
   background: linear-gradient(90deg, #5b2d8e, #7c3aed);
   padding: 0.55rem 1rem;
@@ -691,7 +700,6 @@ section { padding: 7rem 0; }
   padding: 0.22rem 0.6rem;
 }
 
-/* Card hero central */
 .hrmj-hero-card {
   margin: 0.9rem auto;
   width: 65%;
@@ -726,7 +734,6 @@ section { padding: 7rem 0; }
   padding: 0.2rem 0.7rem;
 }
 
-/* Sections row */
 .hrmj-sections {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -743,7 +750,6 @@ section { padding: 7rem 0; }
   text-transform: uppercase;
 }
 
-/* Service cards */
 .hrmj-service-card {
   background: #fff;
   border-radius: 7px;
@@ -774,6 +780,7 @@ section { padding: 7rem 0; }
   flex-direction: column;
   flex: 1;
   gap: 1px;
+  min-width: 0;
 }
 
 .hrmj-card-name { font-size: 0.58rem; font-weight: 700; color: #1a1a2e; }
@@ -1047,6 +1054,7 @@ section { padding: 7rem 0; }
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  min-width: 0;
 }
 
 .edu-info h4 {
@@ -1172,6 +1180,7 @@ section { padding: 7rem 0; }
   color: var(--text);
   box-shadow: var(--shadow-sm);
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  min-height: 44px;
 }
 
 .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
@@ -1188,6 +1197,7 @@ section { padding: 7rem 0; }
   flex-direction: column;
   gap: 0.1rem;
   flex: 1;
+  min-width: 0;
 }
 
 .contact-card-info strong { font-size: 0.92rem; font-weight: 700; }
@@ -1197,6 +1207,7 @@ section { padding: 7rem 0; }
   font-size: 1rem;
   color: var(--text-muted);
   transition: transform 0.2s;
+  flex-shrink: 0;
 }
 
 .contact-card:hover .contact-arrow { transform: translateX(4px); }
@@ -1214,6 +1225,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
 .footer-brand {
@@ -1250,7 +1263,7 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — 1024px
    ============================================================ */
 @media (max-width: 1024px) {
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1259,9 +1272,16 @@ footer {
   .hero-card     { width: 100%; max-width: 400px; }
 }
 
+/* ============================================================
+   RESPONSIVE — 768px (tablet / mobile grande)
+   ============================================================ */
 @media (max-width: 768px) {
-  section { padding: 5rem 0; }
+  section { padding: 4rem 0; }
+  .container { padding: 0 1.4rem; }
+  .section-header { margin-bottom: 2.5rem; }
 
+  /* Nav */
+  .nav-inner { padding: 1rem 1.4rem; }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
 
@@ -1271,36 +1291,140 @@ footer {
     position: absolute;
     top: 100%; left: 0; right: 0;
     background: var(--white);
-    padding: 1rem 2rem;
+    padding: 1rem 1.4rem;
     border-top: 1px solid var(--border);
     box-shadow: var(--shadow-md);
     gap: 0.3rem;
   }
 
-  .hero-inner { text-align: center; }
+  .nav-links.open a {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Hero */
+  .hero-inner { text-align: center; gap: 2.5rem; }
   .hero-location { justify-content: center; }
   .hero-actions  { justify-content: center; }
+  .hero-sub { font-size: 0.97rem; }
+  .hero-card { max-width: 100%; }
+  .hero-scroll { display: none; }
 
-  .sobre-grid    { grid-template-columns: 1fr; gap: 3rem; }
-  .sobre-cards   { grid-template-columns: 1fr; }
+  /* Blobs menores em mobile */
+  .blob-1 { width: 280px; height: 280px; top: -60px; right: -40px; }
+  .blob-2 { width: 220px; height: 220px; }
+  .blob-3 { display: none; }
 
-  .project-featured { grid-template-columns: 1fr; gap: 2rem; }
-  .projects-grid    { grid-template-columns: 1fr; }
+  /* Sobre */
+  .sobre-grid  { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sobre-cards { grid-template-columns: 1fr 1fr; }
 
-  .contact-grid  { grid-template-columns: 1fr; }
+  /* Projetos */
+  .project-featured {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .project-featured-info h3 { font-size: 1.5rem; }
+  .projects-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .project-card  { padding: 1.4rem; }
 
-  .edu-card { flex-wrap: wrap; }
+  /* Timeline */
+  .timeline::before { left: 18px; }
+  .timeline-item {
+    grid-template-columns: 40px 1fr;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  .timeline-card { padding: 1.4rem; }
+  .timeline-card-header { flex-direction: column; gap: 0.6rem; }
+  .timeline-meta { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; }
+
+  /* Educação */
+  .edu-card { padding: 1.4rem 1.4rem 1.4rem 1.8rem; gap: 1rem; flex-wrap: wrap; }
   .edu-badge { margin-left: auto; }
 
-  .timeline::before { left: 18px; }
-  .timeline-item { grid-template-columns: 40px 1fr; }
+  /* Skills */
+  .skills-outer { grid-template-columns: 1fr; gap: 1.2rem; }
+  .skill-category { padding: 1.4rem; }
 
-  .timeline-card-header { flex-direction: column; }
-  .timeline-meta { align-items: flex-start; }
+  /* Contato */
+  .contact-grid { grid-template-columns: 1fr; max-width: 100%; }
 }
 
+/* ============================================================
+   RESPONSIVE — 480px (mobile pequeno)
+   ============================================================ */
 @media (max-width: 480px) {
-  .container { padding: 0 1.2rem; }
-  .hero-text h1 { font-size: 3rem; }
-  .timeline-card { padding: 1.4rem; }
+  .container { padding: 0 1rem; }
+  section { padding: 3.5rem 0; }
+
+  .hero-text h1 { font-size: clamp(2.4rem, 12vw, 3.2rem); }
+  .hero-sub { font-size: 0.92rem; }
+  .hero-eyebrow { font-size: 0.95rem; }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-desc { font-size: 0.95rem; }
+
+  /* Sobre cards: 1 coluna em telas muito pequenas */
+  .sobre-cards { grid-template-columns: 1fr; }
+  .info-card { padding: 1rem; }
+
+  /* Project featured */
+  .project-featured { padding: 1.4rem; }
+  .project-featured-info h3 { font-size: 1.3rem; }
+
+  /* Timeline compacta */
+  .timeline-item { grid-template-columns: 34px 1fr; gap: 0.8rem; }
+  .timeline-marker { width: 34px; height: 34px; }
+  .timeline::before { left: 16px; }
+  .timeline-card { padding: 1.2rem; }
+  .timeline-card h4 { font-size: 0.97rem; }
+
+  /* Edu card */
+  .edu-card { flex-direction: column; align-items: flex-start; padding: 1.2rem 1.2rem 1.2rem 1.6rem; }
+  .edu-badge { margin-left: 0; align-self: flex-start; }
+  .edu-icon { font-size: 1.5rem; }
+
+  /* Skills */
+  .skill-item { font-size: 0.78rem; padding: 0.45rem 0.75rem; }
+
+  /* Contact */
+  .contact-card { padding: 1.1rem 1.2rem; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; text-align: center; gap: 0.6rem; }
+
+  /* Botões: tamanho de toque adequado */
+  .btn { min-height: 48px; font-size: 0.95rem; }
+
+  /* Chips */
+  .chip { font-size: 0.78rem; }
+
+  /* Hero card */
+  .hcard-num { font-size: 1rem; }
+  .hcard-label { font-size: 0.6rem; }
+}
+
+/* ============================================================
+   RESPONSIVE — 360px (mobile muito pequeno)
+   ============================================================ */
+@media (max-width: 360px) {
+  .hero-text h1 { font-size: 2.2rem; }
+  .nav-inner { padding: 0.9rem 1rem; }
+  .nav-brand { font-size: 1.15rem; }
+  .hcard-stats { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+  .hcard-stat { padding: 0.55rem 0.25rem; }
+  .timeline-item { grid-template-columns: 30px 1fr; gap: 0.6rem; }
+  .timeline::before { left: 13px; }
+  .timeline-marker { width: 28px; height: 28px; }
 }
